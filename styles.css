@@ -1,0 +1,884 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  scroll-behavior: smooth;
+  background: #a3a3a3;
+  overflow-x: hidden;
+}
+
+body.intro-active {
+  overflow: hidden;
+}
+
+body main{
+  display: flex;
+  justify-self: flex-start;
+  align-items: center;
+  flex-flow: column;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+header {
+  background-color: black;
+  height: 8.59vh;
+  width: 100vw;
+  display:flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color:white;
+  padding: 20px;
+  position: fixed;
+  z-index: 1000;
+}
+
+header h1{
+  font-size: clamp(16px, 1.5vw + 1vh, 32px);
+  flex-grow: 1;
+}
+
+header .nav{
+  height: 5.37vh;
+  width: 40.32vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:5.65vw;
+}
+
+header a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5vw;
+  font-size: clamp(8px, 0.8vw + 0.4vh, 16px);
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  min-width: 7.36vw;
+  min-height: 3.36vh;  
+}
+
+header #acasa {
+  color:white;
+  transition: color 0.7s ease;
+}
+header #despre {
+  color:white;
+  transition: color 0.7s ease;
+}
+
+header #contact{
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0.32vh 0.53vw;
+gap: 1.27vw;
+color: white;
+background: #6F1A07;
+width: 8.36vw;
+height: 3.76vh;
+transition: background-color 0.7s ease;
+}
+
+header #acasa svg path {
+  fill: currentColor;
+  transition: fill 0.7s ease;
+}
+header #acasa:hover {
+  color: #2E5266;
+}
+header #despre:hover {
+  color:#E2C044;
+
+}
+
+header #contact:hover {
+  background-color: #6F1A07;
+}
+
+header #acasa:hover svg path {
+  fill: #2E5266;
+}
+
+header a svg {
+  width: clamp(0px, 2vw + 1vh, 32px);  /* lățime fluidă, între 16px și 32px */
+  height: clamp(0px, 2vw + 1vh, 32px); /* înălțime fluidă, păstrează proporția */
+}
+
+
+.intro {
+  overflow: hidden;
+  opacity: 1;                 /* vizibil inițial */
+  height: 100vh;
+  max-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('introi.jpg') no-repeat center center;
+  background-size: cover;
+  transition: opacity 1.5s ease, max-height 2.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-flow: column;
+}
+
+.intro.hidden {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+
+.intro img {
+    height:15vh;
+}
+
+.intro h1 {
+    color: #ffffff;
+    font-size: 4rem;
+    font-family: 'Montserrat';
+}
+
+.intro h2{
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: 'Open Sans';
+}
+
+.intro svg {
+  padding-top: 2rem;
+}
+
+main{
+    background: #F3FCF0;
+    width: 100%;
+    height: auto;
+}
+
+.entry{
+  width: 100%;
+  height: 77.65vh;
+  background: 
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 71.63%, rgba(0, 0, 0, 0.08) 100%), 
+    url('entry.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.entry div{
+  width: 100%;
+  height: 77.65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10.9vh 7.8vw;
+  text-decoration: none;
+  text-transform: uppercase;
+  color:white;
+  font-family: 'Montserrat';
+}
+
+.entry div h1{
+  font-size: clamp(0px, 2vw + 1vh, 64px);
+  text-align: center;
+  transition: opacity 3s ease;
+}
+
+.entry div h2
+{
+width: 923px;
+height: 77px;
+font-family: 'Open Sans';
+font-style: normal;
+text-align: center;
+
+font-size: clamp(0px, 2vw + 1vh, 64px);
+  text-align: center;
+
+flex: none;
+order: 1;
+flex-grow: 0;
+transition: opacity 0.7s ease;
+}
+
+.entry div h1.hidden,
+.entry div h2.hidden {
+  opacity: 0;
+}
+
+.services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  padding: 4vh 1vw; /* 20px → aproximativ 2vh, 10px → 1vw */
+  gap: 2vh;
+  background: #010101;
+}
+
+.services h2{
+  color:white;
+  font-family: 'Montserrat';
+  text-align: center;
+  font-style: normal;
+  text-align: center;
+  width: 100%;
+  font-size: clamp(0px, 1.5vw + 1vh, 32px);
+}
+.services-cards p{
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+   font-size: clamp(0px, 1vw + 0.5vh, 20px);
+  font-weight: 600; /* potrivit pentru un h4 */
+  line-height: 1.3;
+  align-items: center;
+}
+.services svg,.dif svg, .despre svg, .func svg {
+  height: 10vh;   /* înălțimea va fi 10% din viewport height */
+  width: 100%;    /* lățimea rămâne 100% din container */
+  max-width: 100%; /* pentru siguranță să nu depășească containerul */
+  opacity: 0;            /* invizibil inițial */
+  transform: translateY(20px); /* opțional: se mișcă puțin de jos în sus */
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.services svg.visible,.dif svg.visible, .despre svg.visible, .func svg.visible {
+  opacity: 1;            /* vizibil */
+  transform: translateY(0); /* revine la poziția normală */
+}
+
+.services-cards{
+   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 0;
+  gap: 2vw 7.5vh;
+  width: 98vw;
+  height: 55vh;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.services-cards section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 0.75vh;
+
+  width: 25.375vw;
+  height: 25.2vh;
+
+  border-bottom: 0.6vh solid #FFFFFF;
+
+ 
+  transition: border-color 0.7s ease;
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.services-cards section:hover{
+  border-color: #2E5266;
+}
+
+.services-cards div{
+width: 19.375vw;
+height: 17.2vh;
+background-color: #FFFFFF;
+flex: none;
+order: 0;
+flex-grow: 0;
+ transition: weight 0.7s ease;
+  transition: height 0.7s ease;
+  background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+.services-cards section:hover div {
+  width: 21.375vw;
+  height: 19.2vh;
+}
+
+.dif,.despre{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100vw;
+  height: 110vh;
+  padding: 4vh 1vw; /* 20px → aproximativ 2vh, 10px → 1vw */
+  gap: 2vh;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.dif h2,.despre h2{
+  color:#2E5266;
+  font-family: 'Montserrat';
+  text-align: center;
+  font-style: normal;
+  text-align: center;
+  width: 100%;
+  font-size: clamp(0px, 1.5vw + 1vh, 32px);
+}
+.dif h3, .despre h3{
+  color:#2E5266;
+  font-family: 'Montserrat';
+  text-align: center;
+  font-style: normal;
+  text-align: center;
+  width: 100%;
+  font-size: clamp(0px, 2vw + 1vh, 28px);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.dif-cards,.despre-cards{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+align-items: center;
+align-content: center;
+padding: 2.1vh 2.1vw; /* padding flexibil în funcție de viewport */
+gap: 5.2vh 6.25vw;    /* gap flexibil în funcție de viewport */
+
+width: 93vw;          /* lățimea întregului viewport */
+height: 85vh;          /* înălțimea ca procent din viewport */
+
+flex: none;
+order: 2;
+flex-grow: 0;
+}
+
+.dif-cards section,.despre-cards section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 0.75vh;
+
+  width: 40.375vw;
+  height: 25.2vh;
+
+  border-bottom: 0.6vh solid #000000;
+
+ 
+  transition: border-color 0.7s ease;
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.dif-cards p, .despre-cards p{
+  color: rgb(0, 0, 0);
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+   font-size: clamp(0px, 1vw + 0.5vh, 20px);
+  font-weight: 600; /* potrivit pentru un h4 */
+  line-height: 1.3;
+  align-items: center;
+}
+
+.func{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  padding: 4vh 1vw; /* 20px → aproximativ 2vh, 10px → 1vw */
+  gap: 2vh;
+  background: #000000;
+}
+
+.func-cards{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+align-items: center;
+align-content: center;
+padding: 2.1vh 2.1vw; /* padding flexibil în funcție de viewport */
+gap: 5.2vh 6.25vw;    /* gap flexibil în funcție de viewport */
+
+width: 93vw;          /* lățimea întregului viewport */
+height: 57vh;         /* înălțimea ca procent din viewport */
+
+flex: none;
+order: 2;
+flex-grow: 0;
+}
+
+.func-cards section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 0.75vh;
+
+  width: 40.375vw;
+  height: 25.2vh;
+
+  border-bottom: 0.6vh solid #ffffff;
+
+ 
+  transition: border-color 0.7s ease;
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.func h2, .poze h2{
+  color:#E2C044;
+  font-family: 'Montserrat';
+  text-align: center;
+  font-style: normal;
+  text-align: center;
+  width: 100%;
+  font-size: clamp(0px, 1.5vw + 1vh, 32px);
+}
+.func h3, .poze h3{
+  color:#E2C044;
+  font-family: 'Montserrat';
+  text-align: center;
+  font-style: normal;
+  text-align: center;
+  width: 100%;
+  font-size: clamp(0px, 2vw + 1vh, 28px);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.func-cards p{
+  color:#ffffff;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+   font-size: clamp(0px, 1vw + 0.5vh, 20px);
+  font-weight: 600; /* potrivit pentru un h4 */
+  line-height: 1.3;
+  align-items: center;
+}
+.despre{
+  height: 80vh;
+}
+.despre-cards{
+  height: 60vh;
+}
+.despre h2{
+  color:#6F1A07;
+}
+
+.despre h3{
+  color:#6F1A07;
+}
+
+.poze {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 1vw 1vh;
+  gap: 2.5vh;
+  background-color: #000;
+  width: 100vw;
+}
+
+.poze h2, .poze h3 {
+  color: white;
+}
+
+.slider {
+  position: relative;
+  width: 90vw;
+  max-width: 1200px;
+  height: 60vh;
+  margin: 5vh auto;
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.6s ease;
+  align-items: center;
+}
+
+.slide {
+  flex: 0 0 35%;  /* mai late decât înainte (era 30%) */
+  margin: 0 2%;
+  transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
+  opacity: 0.4;
+  filter: blur(2px);
+  transform: scale(0.8);
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 45vh;   /* mai scunde decât înainte (era 60vh) */
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.slide.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1.1);
+  z-index: 3;
+}
+
+.slide.prev, .slide.next {
+  opacity: 0.6;
+  filter: blur(1px);
+  transform: scale(0.9);
+  z-index: 2;
+}
+
+.slide.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  filter: blur(2px);
+  z-index: 0;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 3vh;
+  padding: 1vh 1vw;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.prev-btn { left: 1vw; }
+.next-btn { right: 1vw; }
+
+footer {
+  height: 30vh;
+  width: 100vw;
+  background-color: #010101;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 0vh 5vw;
+  border-top: 0.7vh solid #FFFFFF;
+}
+
+/* Contact */
+.footer-contact {
+  height: 25vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 2vh 5vw;
+}
+
+/* Hartă fixată corect */
+.footer-map {
+  width: 25vw;              /* nu 100vw, altfel rupe layoutul */
+  height: 20vh;             /* mai scundă, proporțională cu footerul */
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5vw;
+  border: 0.4vh solid #fff;
+}
+
+.footer-map iframe {
+  width: 100%;
+  height: 100%;
+  filter: brightness(85%) grayscale(20%);
+  transition: 0.4s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.footer-map iframe:hover {
+  filter: brightness(100%) grayscale(0%);
+  transform: scale(1.02);
+}
+
+/* Stil text */
+.footer-contact h3 {
+  color: #ffffff;
+  font-family: 'Montserrat';
+  text-align: center;
+  width: 100%;
+  font-size: clamp(14px, 2vw + 1vh, 28px);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.footer-contact p {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  font-size: clamp(12px, 1vw + 0.5vh, 20px);
+  font-weight: 500;
+  line-height: 1.3;
+}
+.subfooter {
+  width: 100vw;
+  background-color: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.subfooter p {
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  opacity: 0.8;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.subfooter a {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.subfooter a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+footer svg{
+  width: 30vw;   /* lățime relativă la viewport */
+  height: 30vh;  /* înălțime relativă la viewport */
+
+}
+
+/* =======================
+   📱 OPTIMIZARE PENTRU TELEFON
+   ======================= */
+@media (max-width: 768px) {
+
+  header {
+    flex-direction: column; /* vertical */
+    height: auto;
+    padding: 3vh 2vw;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header h1 {
+    font-size: clamp(18px, 5vw, 28px); /* text proporțional */
+    margin-bottom: 1.5vh;
+    line-height: 1.2;
+  }
+
+  header .nav {
+    flex-wrap: wrap;      /* link-urile se mută pe linii noi dacă e nevoie */
+    justify-content: center;
+    gap: 2vw;
+    width: 100%;
+  }
+
+  header a {
+    font-size: clamp(10px, 3vw, 14px);
+    padding: 1vh 2vw;
+    min-width: auto;
+    min-height: auto;
+    text-align: center;
+    margin-bottom: 1vh;
+  }
+
+  /* optional: hover adaptat pentru touch */
+  header a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+
+  header #acasa,
+  header #despre {
+    color: white;
+    transition: color 0.5s ease;
+    font-size: clamp(12px, 4vw, 16px);
+    padding: 1vh 2vw;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 1vh;
+  }
+
+  header #acasa:hover,
+  header #despre:hover {
+    color: #E2C044; /* sau alt efect la hover */
+  }
+
+  header #contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 3vw;       /* mai confortabil pentru touch */
+    gap: 2vw;
+    font-size: clamp(12px, 4vw, 16px);
+    width: auto;            /* nu fixează vw, să fie flexibil */
+    height: auto;           /* înălțimea se ajustează automat */
+    min-width: 40%;         /* să nu devină prea mic pe telefon */
+    min-height: 4vh;
+    color: white;
+    background: #6F1A07;
+    border-radius: 0.5vh;
+    transition: background-color 0.5s ease, transform 0.3s ease;
+  }
+
+  header #contact:hover {
+    background-color: #572005; /* efect hover mai vizibil pe touch */
+    transform: scale(1.02);
+  }
+
+  /* INTRO + ENTRY */
+  .intro h1 {
+    font-size: clamp(14px, 5vw, 40px);
+  }
+
+  .intro h2 {
+    font-size: clamp(10px, 2.5vw, 22px);
+  }
+
+  .entry {
+    height: 60vh;
+  }
+
+  .entry div h1,
+  .entry div h2 {
+    width: 90%;
+    font-size: clamp(10px, 3vw, 36px);
+  }
+
+  /* SECȚIUNI GENERALE */
+  .services, .dif, .despre, .func {
+    height: auto;
+    padding: 6vh 4vw;
+  }
+
+  .services-cards,
+  .dif-cards,
+  .despre-cards,
+  .func-cards {
+    flex-direction: column;
+    height: auto;
+    gap: 4vh;
+  }
+
+  .services-cards section,
+  .dif-cards section,
+  .despre-cards section,
+  .func-cards section {
+    width: 90vw;
+    height: auto;
+  }
+
+  .services-cards div {
+    width: 80vw;
+    height: 20vh;
+  }
+
+  /* SLIDER */
+  .slider {
+    width: 100vw;
+    height: 40vh;
+  }
+
+  .slide {
+    flex: 0 0 80%;
+    margin: 0 2%;
+  }
+
+  .slide img {
+    height: 35vh;
+    border-radius: 10px;
+  }
+
+  .slider-btn {
+    font-size: 2.5vh;
+    padding: 1vh 2vw;
+  }
+
+  /* FOOTER */
+  footer {
+    flex-direction: column;
+    height: auto;
+    padding: 4vh 0;
+    gap: 4vh;
+  }
+
+  .footer-contact {
+    width: 80vw;
+    height: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-map {
+    width: 80vw;
+    height: 30vh;
+  }
+
+  .footer-contact h3 {
+    font-size: clamp(16px, 5vw, 22px);
+  }
+
+  .footer-contact p {
+    font-size: clamp(12px, 4vw, 18px);
+  }
+
+  /* SUBFOOTER */
+  .subfooter {
+    flex-direction: column;
+    padding: 2vh 4vw;
+  }
+
+  .subfooter p {
+    font-size: clamp(12px, 3.5vw, 16px);
+    line-height: 1.5;
+  }
+
+  .subfooter a {
+    display: inline-block;
+    margin-top: 1vh;
+  }
+}
