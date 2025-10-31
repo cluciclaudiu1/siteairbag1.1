@@ -1,40 +1,5 @@
-// ===== Elemente =====
-const header = document.querySelector("header");
-const intro = document.querySelector(".intro");
-const contact = document.getElementById("contact");
-
-// ===== Funcții pentru blocarea / deblocarea scroll-ului =====
-function disableScroll() {
-  document.body.style.overflow = 'hidden';
-}
-
-function enableScroll() {
-  document.body.style.overflow = '';
-}
-
-// ===== Forțăm scroll sus imediat =====
-window.scrollTo(0, 0);
-disableScroll(); // blocăm scroll la start
-
-// ===== Load page =====
-window.addEventListener("load", () => {
-  if (!localStorage.getItem("introShown")) {
-    intro.classList.remove("hidden"); // intro vizibil
-
-    // Ascunde intro după 2 secunde cu fade
-    setTimeout(() => {
-      intro.classList.add("hidden");   // fade-out intro
-      header.classList.add("visible"); // arată header-ul
-      enableScroll();                  // deblocăm scroll
-      localStorage.setItem("introShown", "true");
-    }, 2000);
-
-  } else {
-    // Intro deja vizualizat → ascunde instant și activează scroll
-    intro.classList.add("hidden");
-    header.classList.add("visible");
-    enableScroll();
-  }
+document.getElementById("despre").addEventListener("click", function() {
+   document.querySelector(".despre").scrollIntoView({ behavior: "smooth" });
 });
 
 // ===== Header apare la scroll doar dacă nu e deja vizibil =====

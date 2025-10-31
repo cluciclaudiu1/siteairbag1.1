@@ -115,47 +115,6 @@ header a svg {
 }
 
 
-.intro {
-  overflow: hidden;
-  opacity: 1;                 /* vizibil inițial */
-  height: 100vh;
-  max-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('introi.jpg') no-repeat center center;
-  background-size: cover;
-  transition: opacity 1.5s ease, max-height 2.5s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-flow: column;
-}
-
-.intro.hidden {
-  opacity: 0;
-  max-height: 0;
-  pointer-events: none;
-}
-
-.intro img {
-    height:15vh;
-}
-
-.intro h1 {
-    color: #ffffff;
-    font-size: 4rem;
-    font-family: 'Montserrat';
-}
-
-.intro h2{
-    color: #ffffff;
-    font-size: 1rem;
-    font-family: 'Open Sans';
-}
-
-.intro svg {
-  padding-top: 2rem;
-}
-
 main{
     background: #F3FCF0;
     width: 100%;
@@ -690,156 +649,264 @@ footer svg{
 
 }
 
-/* =======================
-   📱 MOBILE-FIRST REDESIGN
-   ======================= */
+/* Responsive mobile */
 @media (max-width: 768px) {
-
-  /* HEADER */
   header {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 3vh 4vw;
-    text-align: center;
-    height: auto;
+    height: auto; /* înălțime adaptivă */
+    gap:0.2vh;
   }
 
   header h1 {
-    font-size: clamp(18px, 6vw, 28px);
-    margin-bottom: 2vh;
-    line-height: 1.2;
+    font-size: clamp(16px, 6vw, 28px);
+    text-align: center;
+    margin-bottom: 1vh;
   }
 
   header .nav {
-    flex-wrap: wrap;
-    gap: 2.5vw;
     width: 100%;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 0vw;
   }
 
   header a {
-    font-size: clamp(12px, 4vw, 16px);
-    padding: 1.5vh 3vw;
-    min-width: auto;
+    min-width: 30%;
     min-height: auto;
-    text-align: center;
+    font-size: clamp(10px, 3vw, 14px);
+    padding: 1vh 1vw;
   }
 
   header #contact {
-    width: auto;
-    min-width: 50%;
-    padding: 1.5vh 4vw;
-    border-radius: 0.5vh;
-    margin-top: 1.5vh;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 40%;
+    height: auto;
+    padding: 1vh 2vw;
+    font-size: clamp(10px, 3vw, 14px);
   }
 
-  header #contact:hover {
-    transform: scale(1.03);
-    background-color: #572005;
+  header a svg {
+    width: clamp(16px, 6vw, 28px);
+    height: clamp(16px, 6vw, 28px);
   }
 
-  /* INTRO */
-  .intro {
-    height: 70vh;
-    padding: 2vh 4vw;
+  .entry {
+        height: 60vh;
+        background-size: cover;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+    }
+
+  .entry div {
+    height: auto;
+    padding: 8vh 5vw; /* mai puțin padding pe mobil */
+    justify-content: center; /* text centrat pe verticală */
   }
 
-  .intro h1 {
-    font-size: clamp(22px, 8vw, 36px);
+  .entry div h1 {
+    font-size: clamp(18px, 7vw, 36px);
+    line-height: 1.2;
   }
 
-  .intro h2 {
-    font-size: clamp(14px, 4vw, 20px);
+  .entry div h2 {
+    width: 90%; /* nu mai e fix 923px */
+    height: auto;
+    font-size: clamp(14px, 5vw, 24px);
+    line-height: 1.3;
     margin-top: 1vh;
   }
 
-  .intro img {
-    height: 12vh;
-    margin-bottom: 1.5vh;
+   .services {
+    height: auto;       /* adaptiv la conținut */
+    padding: 4vh 5vw;
   }
 
-  /* ENTRY */
-  .entry {
-    height: 55vh;
-    padding: 4vh 4vw;
+  .services h2 {
+    font-size: clamp(18px, 6vw, 28px);
   }
 
-  .entry div h1,
-  .entry div h2 {
-    width: 90%;
-    font-size: clamp(16px, 5vw, 28px);
+  .services-cards {
+    flex-direction: column; /* stivuire pe verticală */
+    gap: 4vh;               /* mai mult spațiu între carduri */
+    width: 100%;
+    height: auto;           /* se adaptează la conținut */
+    padding: 0;
   }
 
-  /* SECȚIUNI GENERALE */
-  .services, .dif, .despre, .func, .poze {
-    padding: 6vh 4vw;
-    gap: 3vh;
-  }
-
-  .services-cards,
-  .dif-cards,
-  .despre-cards,
-  .func-cards {
-    flex-direction: column;
-    gap: 4vh;
-    height: auto;
-  }
-
-  .services-cards section,
-  .dif-cards section,
-  .despre-cards section,
-  .func-cards section {
-    width: 90vw;
-    height: auto;
+  .services-cards section {
+    width: 90%;       /* lățime mai mare pe mobil */
+    height: auto;     /* înălțime adaptivă */
     border-bottom-width: 0.4vh;
   }
 
   .services-cards div {
-    width: 90%;
-    height: 20vh;
+    width: 100%;
+    height: 20vh;      /* mai mic pentru telefon */
   }
 
-  /* SLIDER */
-  .slider {
+  .services-cards section:hover div {
     width: 100%;
-    height: 45vh;
+    height: 22vh;      /* efect hover mai mic pe mobil */
+  }
+
+  .services-cards p {
+    font-size: clamp(12px, 4vw, 18px);
+  }
+
+  .services svg {
+    height: 8vh; /* mai mic decât pe desktop */
+  }
+
+  .dif, .despre {
+    height: auto;           /* adaptiv la conținut */
+    padding: 4vh 5vw;       /* mai mult spațiu lateral pentru mobil */
+  }
+
+  .dif h2, .despre h2 {
+    font-size: clamp(18px, 6vw, 28px);
+  }
+
+  .dif h3, .despre h3 {
+    font-size: clamp(16px, 5vw, 24px);
+    line-height: 1.3;
+  }
+
+  .dif-cards, .despre-cards {
+    flex-direction: column; /* stivuire verticală */
+    gap: 4vh;               /* mai mult spațiu între carduri */
+    width: 100%;
+    height: auto;           /* se adaptează la conținut */
+    padding: 0;
+  }
+
+  .dif-cards section, .despre-cards section {
+    width: 90%;       /* lățime mai mare pe mobil */
+    height: auto;     /* înălțime adaptivă */
+    border-bottom-width: 0.4vh;
+  }
+
+  .dif-cards p, .despre-cards p {
+    font-size: clamp(12px, 4vw, 18px);
+  }
+
+  .func {
+    height: auto;          /* adaptiv la conținut */
+    padding: 4vh 5vw;      /* mai mult spațiu lateral pe mobil */
+  }
+
+  .func h2, .poze h2 {
+    font-size: clamp(18px, 6vw, 28px);
+  }
+
+  .func h3, .poze h3 {
+    font-size: clamp(16px, 5vw, 24px);
+    line-height: 1.3;
+  }
+
+  .func-cards {
+    flex-direction: column;  /* stivuire pe verticală */
+    gap: 4vh;                /* mai mult spațiu între carduri */
+    width: 100%;
+    height: auto;            /* se adaptează la conținut */
+    padding: 0;
+  }
+
+  .func-cards section {
+    width: 90%;      /* lățime mai mare pe mobil */
+    height: auto;    /* înălțime adaptivă */
+    border-bottom-width: 0.4vh;
+  }
+
+  .func-cards p {
+    font-size: clamp(12px, 4vw, 18px);
+  }
+
+  .despre {
+    height: auto;      /* se adaptează la conținut */
+    padding: 4vh 5vw;  /* mai mult spațiu lateral pe mobil */
+  }
+
+  .despre-cards {
+    height: auto;      /* înălțime adaptivă */
+    flex-direction: column; /* stivuire verticală */
+    gap: 4vh;          /* spațiu mai mare între carduri */
+    width: 100%;
+  }
+
+  .despre h2 {
+    font-size: clamp(18px, 6vw, 28px);
+  }
+
+  .despre h3 {
+    font-size: clamp(16px, 5vw, 24px);
+    line-height: 1.3;
+  }
+
+  .poze {
+    padding: 4vh 5vw 2vh; /* mai mult spațiu lateral */
+    gap: 3vh;
+  }
+
+  .poze h2, .poze h3 {
+    font-size: clamp(16px, 5vw, 24px);
+  }
+
+  .slider {
+    width: 95vw;        /* mai aproape de marginile ecranului */
+    height: 40vh;       /* înălțime redusă pentru mobil */
+    margin: 3vh auto;
   }
 
   .slide {
-    flex: 0 0 80%;
-    margin: 0 2%;
+    flex: 0 0 70%;      /* carduri mai mari pe ecran mic */
+    margin: 0 2.5%;
+    opacity: 0.5;
+    transform: scale(0.85);
   }
 
   .slide img {
-    height: 35vh;
-    border-radius: 12px;
+    height: 30vh;       /* imagine mai scurtă */
+  }
+
+  .slide.active {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .slide.prev, .slide.next {
+    transform: scale(0.9);
+    opacity: 0.6;
   }
 
   .slider-btn {
-    font-size: 2.5vh;
-    padding: 1vh 2vw;
+    font-size: 4vw;     /* butoane mai mici, proporțional cu ecranul */
+    padding: 1.5vw 2vw;
   }
-
-  /* FOOTER */
-  footer {
+footer {
     flex-direction: column;
-    padding: 4vh 4vw;
-    gap: 4vh;
     height: auto;
+    padding: 3vh 5vw;
+    gap: 3vh;
+    border-top: 0.5vh solid #FFFFFF;
   }
 
-  .footer-contact, .footer-map {
+  .footer-contact {
     width: 90%;
     height: auto;
-    text-align: center;
     align-items: center;
+    text-align: center;
+    gap: 2vh;
   }
 
   .footer-map {
+    width: 90%;
     height: 30vh;
     margin-top: 2vh;
+    border-radius: 1vw;
+  }
+
+  .footer-map iframe {
+    height: 100%;
   }
 
   .footer-contact h3 {
@@ -850,32 +917,12 @@ footer svg{
     font-size: clamp(14px, 4vw, 18px);
   }
 
-  /* SUBFOOTER */
   .subfooter {
-    flex-direction: column;
-    padding: 2vh 4vw;
-    gap: 2vh;
+    padding: 2vh 5vw;
   }
 
-  .subfooter p {
-    font-size: clamp(12px, 3.5vw, 16px);
-    line-height: 1.5;
-  }
-
-  .subfooter a {
-    margin-top: 1vh;
-    display: inline-block;
-  }
-
-  /* HOVER EFFECTS TOUCH-FRIENDLY */
-  header a:hover, header a:active {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #E2C044;
-  }
-
-  .slide:hover {
-    transform: scale(1.05);
-    opacity: 1;
-    filter: blur(0);
+  footer svg {
+    width: 80vw;
+    height: auto;
   }
 }
