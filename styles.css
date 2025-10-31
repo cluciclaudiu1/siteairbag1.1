@@ -691,108 +691,91 @@ footer svg{
 }
 
 /* =======================
-   📱 OPTIMIZARE PENTRU TELEFON
+   📱 MOBILE-FIRST REDESIGN
    ======================= */
 @media (max-width: 768px) {
 
+  /* HEADER */
   header {
-    flex-direction: column; /* vertical */
-    height: auto;
-    padding: 3vh 2vw;
-    text-align: center;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 3vh 4vw;
+    text-align: center;
+    height: auto;
   }
 
   header h1 {
-    font-size: clamp(18px, 5vw, 28px); /* text proporțional */
-    margin-bottom: 1.5vh;
+    font-size: clamp(18px, 6vw, 28px);
+    margin-bottom: 2vh;
     line-height: 1.2;
   }
 
   header .nav {
-    flex-wrap: wrap;      /* link-urile se mută pe linii noi dacă e nevoie */
-    justify-content: center;
-    gap: 2vw;
+    flex-wrap: wrap;
+    gap: 2.5vw;
     width: 100%;
+    justify-content: center;
   }
 
   header a {
-    font-size: clamp(10px, 3vw, 14px);
-    padding: 1vh 2vw;
+    font-size: clamp(12px, 4vw, 16px);
+    padding: 1.5vh 3vw;
     min-width: auto;
     min-height: auto;
     text-align: center;
-    margin-bottom: 1vh;
-  }
-
-  /* optional: hover adaptat pentru touch */
-  header a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-  }
-
-  header #acasa,
-  header #despre {
-    color: white;
-    transition: color 0.5s ease;
-    font-size: clamp(12px, 4vw, 16px);
-    padding: 1vh 2vw;
-    text-align: center;
-    display: inline-block;
-    margin-bottom: 1vh;
-  }
-
-  header #acasa:hover,
-  header #despre:hover {
-    color: #E2C044; /* sau alt efect la hover */
   }
 
   header #contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1vh 3vw;       /* mai confortabil pentru touch */
-    gap: 2vw;
-    font-size: clamp(12px, 4vw, 16px);
-    width: auto;            /* nu fixează vw, să fie flexibil */
-    height: auto;           /* înălțimea se ajustează automat */
-    min-width: 40%;         /* să nu devină prea mic pe telefon */
-    min-height: 4vh;
-    color: white;
-    background: #6F1A07;
+    width: auto;
+    min-width: 50%;
+    padding: 1.5vh 4vw;
     border-radius: 0.5vh;
-    transition: background-color 0.5s ease, transform 0.3s ease;
+    margin-top: 1.5vh;
+    transition: transform 0.3s ease, background-color 0.3s ease;
   }
 
   header #contact:hover {
-    background-color: #572005; /* efect hover mai vizibil pe touch */
-    transform: scale(1.02);
+    transform: scale(1.03);
+    background-color: #572005;
   }
 
-  /* INTRO + ENTRY */
+  /* INTRO */
+  .intro {
+    height: 70vh;
+    padding: 2vh 4vw;
+  }
+
   .intro h1 {
-    font-size: clamp(14px, 5vw, 40px);
+    font-size: clamp(22px, 8vw, 36px);
   }
 
   .intro h2 {
-    font-size: clamp(10px, 2.5vw, 22px);
+    font-size: clamp(14px, 4vw, 20px);
+    margin-top: 1vh;
   }
 
+  .intro img {
+    height: 12vh;
+    margin-bottom: 1.5vh;
+  }
+
+  /* ENTRY */
   .entry {
-    height: 60vh;
+    height: 55vh;
+    padding: 4vh 4vw;
   }
 
   .entry div h1,
   .entry div h2 {
     width: 90%;
-    font-size: clamp(10px, 3vw, 36px);
+    font-size: clamp(16px, 5vw, 28px);
   }
 
   /* SECȚIUNI GENERALE */
-  .services, .dif, .despre, .func {
-    height: auto;
+  .services, .dif, .despre, .func, .poze {
     padding: 6vh 4vw;
+    gap: 3vh;
   }
 
   .services-cards,
@@ -800,8 +783,8 @@ footer svg{
   .despre-cards,
   .func-cards {
     flex-direction: column;
-    height: auto;
     gap: 4vh;
+    height: auto;
   }
 
   .services-cards section,
@@ -810,17 +793,18 @@ footer svg{
   .func-cards section {
     width: 90vw;
     height: auto;
+    border-bottom-width: 0.4vh;
   }
 
   .services-cards div {
-    width: 80vw;
+    width: 90%;
     height: 20vh;
   }
 
   /* SLIDER */
   .slider {
-    width: 100vw;
-    height: 40vh;
+    width: 100%;
+    height: 45vh;
   }
 
   .slide {
@@ -830,7 +814,7 @@ footer svg{
 
   .slide img {
     height: 35vh;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .slider-btn {
@@ -841,21 +825,21 @@ footer svg{
   /* FOOTER */
   footer {
     flex-direction: column;
-    height: auto;
-    padding: 4vh 0;
+    padding: 4vh 4vw;
     gap: 4vh;
+    height: auto;
   }
 
-  .footer-contact {
-    width: 80vw;
+  .footer-contact, .footer-map {
+    width: 90%;
     height: auto;
-    align-items: center;
     text-align: center;
+    align-items: center;
   }
 
   .footer-map {
-    width: 80vw;
     height: 30vh;
+    margin-top: 2vh;
   }
 
   .footer-contact h3 {
@@ -863,13 +847,14 @@ footer svg{
   }
 
   .footer-contact p {
-    font-size: clamp(12px, 4vw, 18px);
+    font-size: clamp(14px, 4vw, 18px);
   }
 
   /* SUBFOOTER */
   .subfooter {
     flex-direction: column;
     padding: 2vh 4vw;
+    gap: 2vh;
   }
 
   .subfooter p {
@@ -878,7 +863,19 @@ footer svg{
   }
 
   .subfooter a {
-    display: inline-block;
     margin-top: 1vh;
+    display: inline-block;
+  }
+
+  /* HOVER EFFECTS TOUCH-FRIENDLY */
+  header a:hover, header a:active {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #E2C044;
+  }
+
+  .slide:hover {
+    transform: scale(1.05);
+    opacity: 1;
+    filter: blur(0);
   }
 }
