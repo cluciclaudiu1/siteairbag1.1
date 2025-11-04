@@ -862,9 +862,13 @@ footer svg{
     gap: 3vh;
   }
 
-  .poze h2, .poze h3 {
-    font-size: clamp(16px, 5vw, 24px);
-  }
+.poze h2 {
+  font-size: clamp(18px, 2.5vw + 0.5vh, 28px);
+}
+
+.poze h3 {
+  font-size: clamp(14px, 1.8vw + 0.3vh, 22px);
+}
 
   .slider {
     width: 95vw;        /* mai aproape de marginile ecranului */
@@ -932,12 +936,16 @@ footer {
     font-size: clamp(14px, 4vw, 18px);
   }
 
+    .footer-contact a {
+    font-size: clamp(14px, 4vw, 18px);
+  }
+
   .subfooter {
     padding: 2vh 5vw;
   }
 
   footer svg {
-    width: 80vw;
+    width: 40vw;
     height: auto;
   }
 }
