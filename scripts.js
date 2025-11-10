@@ -1,112 +1,144 @@
-document.getElementById("despre").addEventListener("click", function() {
-   document.querySelector(".despre").scrollIntoView({ behavior: "smooth" });
+// ===== Selectori siguri (nu aruncă erori dacă lipsesc) =====
+const headerEl = document.querySelector('.site-header') || document.querySelector('header');
+const contactBtn = document.querySelector('.contact-btn') || document.getElementById('contact');
+const menuToggle = document.getElementById('menu-toggle');
+const nav = document.getElementById('main-nav');
+
+// ===== Header: efect la scroll (fără variabile nedefinite) =====
+window.addEventListener('scroll', () => {
+  if (!headerEl) return;
+  if (window.scrollY > 50) headerEl.classList.add('scrolled');
+  else headerEl.classList.remove('scrolled');
 });
 
-// ===== Header apare la scroll doar dacă nu e deja vizibil =====
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    header.classList.add("visible");
-  } else {
-    header.classList.remove("visible");
-  }
-});
-
-// ===== Hover pe contact =====
-if (contact) {
-  contact.style.transition = 'background-color 0.7s ease';
-  contact.addEventListener('mouseenter', () => contact.style.backgroundColor = '#A23B12');
-  contact.addEventListener('mouseleave', () => contact.style.backgroundColor = '#6F1A07');
+// ===== Hover pe contact (protejăm dacă nu există) =====
+if (contactBtn) {
+  contactBtn.style.transition = 'background-color 0.7s ease';
+  contactBtn.addEventListener('mouseenter', () => contactBtn.style.backgroundColor = '#A23B12');
+  contactBtn.addEventListener('mouseleave', () => contactBtn.style.backgroundColor = '');
 }
 
-// Selectăm toate SVG-urile relevante
-const svgs = document.querySelectorAll('.services svg, .dif svg, .despre svg, .func svg');
+// ===== Burger menu (toggle + închidere la click pe link) =====
+if (menuToggle && nav) {
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    menuToggle.classList.toggle('open');
+  });
 
-const observer = new IntersectionObserver((entries) => {
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('active');
+      menuToggle.classList.remove('open');
+    });
+  });
+}
+
+
+// Hero fade-in la încărcare
+window.addEventListener('load', () => {
+  const heroContent = document.querySelector('.hero-content');
+  heroContent.style.opacity = '1';
+});
+
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero');
+  const scrollPos = window.scrollY;
+  hero.style.backgroundPositionY = `${scrollPos * 0.5}px`;
+});
+
+// Fade-in la apariția în viewport
+const fadeEls = document.querySelectorAll('.fade-in');
+const obs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.2 });
+fadeEls.forEach(el => obs.observe(el));
+
+// ===== Animare apariție carduri proces =====
+const flowCards = document.querySelectorAll('.flow-card');
+
+const flowObserver = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');  // fade-in
-    } else {
-      entry.target.classList.remove('visible'); // fade-out când iese din viewport
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
     }
   });
-}, { threshold: 0.1 }); // 10% vizibil pentru a declanșa animația
+}, { threshold: 0.2 });
 
-// Aplicăm observerul fiecărui SVG
-svgs.forEach(svg => observer.observe(svg));
+flowCards.forEach(el => flowObserver.observe(el));
 
+// ===== Animare apariție secțiune "Despre noi" =====
+const aboutText = document.querySelector('.about-text');
+const highlights = document.querySelectorAll('.highlight');
+const stats = document.querySelectorAll('.stat');
+
+const aboutObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      aboutText?.classList.add('visible');
+      highlights.forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 150);
+      });
+      stats.forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 200);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+if (aboutText) aboutObserver.observe(aboutText);
+
+// ===== GALERIE SLIDER CURAT =====
 const track = document.querySelector('.slider-track');
 const slides = Array.from(document.querySelectorAll('.slide'));
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
+const prevBtn = document.querySelector('.arrow.prev');
+const nextBtn = document.querySelector('.arrow.next');
+const dotsContainer = document.querySelector('.dots');
 
-let currentIndex = Math.floor(slides.length / 2); // start cu imaginea din mijloc
+let index = 0;
+let slidesToShow = 3;
 
-function updateSlides() {
-  const trackWidth = track.parentElement.offsetWidth;
-  const slideStyle = getComputedStyle(slides[0]);
-  const slideWidth = slides[0].offsetWidth + parseFloat(slideStyle.marginLeft) + parseFloat(slideStyle.marginRight);
+// ===== Actualizare dinamică pe device =====
+function updateSlidesToShow() {
+  if (window.innerWidth < 768) slidesToShow = 1;
+  else if (window.innerWidth < 1024) slidesToShow = 2;
+  else slidesToShow = 3;
+}
+updateSlidesToShow();
+window.addEventListener('resize', updateSlidesToShow);
 
-  // centrăm imaginea activă
-  const offset = -(currentIndex * slideWidth) + trackWidth / 2 - slideWidth / 2;
-  track.style.transform = `translateX(${offset}px)`;
+// ===== Creare puncte (dots) =====
+const totalSlides = Math.ceil(slides.length / slidesToShow);
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('button');
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+}
+const dots = dotsContainer.querySelectorAll('button');
 
-  slides.forEach((slide, i) => {
-    slide.classList.remove('prev', 'active', 'next', 'hidden');
-
-    if(i === currentIndex) slide.classList.add('active');
-    else if(i === currentIndex - 1 || (currentIndex === 0 && i === slides.length - 1)) slide.classList.add('prev');
-    else if(i === currentIndex + 1 || (currentIndex === slides.length - 1 && i === 0)) slide.classList.add('next');
-    else slide.classList.add('hidden');
-  });
+// ===== Navigare =====
+function goToSlide(i) {
+  index = (i + totalSlides) % totalSlides;
+  const offset = index * (100 / slidesToShow);
+  track.style.transform = `translateX(-${offset}%)`;
+  dots.forEach((d, j) => d.classList.toggle('active', j === index));
 }
 
-function nextSlide() {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateSlides();
-}
+// ===== Săgeți =====
+nextBtn.addEventListener('click', () => goToSlide(index + 1));
+prevBtn.addEventListener('click', () => goToSlide(index - 1));
 
-function prevSlide() {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-  updateSlides();
-}
-
-nextBtn.addEventListener('click', nextSlide);
-prevBtn.addEventListener('click', prevSlide);
-
-// --- Touch swipe ---
+// ===== Swipe touch =====
 let startX = 0;
-let isDragging = false;
-
-track.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-  isDragging = true;
+let endX = 0;
+track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+track.addEventListener('touchmove', e => endX = e.touches[0].clientX);
+track.addEventListener('touchend', () => {
+  if (startX - endX > 50) goToSlide(index + 1);
+  if (endX - startX > 50) goToSlide(index - 1);
 });
 
-track.addEventListener('touchmove', (e) => {
-  if(!isDragging) return;
-  const currentX = e.touches[0].clientX;
-  const diff = currentX - startX;
-
-  // optional: poți muta track-ul puțin în timp ce tragi
-  // track.style.transform = `translateX(calc(${offset}px + ${diff}px))`;
-});
-
-track.addEventListener('touchend', (e) => {
-  if(!isDragging) return;
-  const endX = e.changedTouches[0].clientX;
-  const diff = endX - startX;
-
-  if(diff > 50) { // swipe la dreapta
-    prevSlide();
-  } else if(diff < -50) { // swipe la stânga
-    nextSlide();
-  }
-  isDragging = false;
-});
-
-// inițializare
-updateSlides();
-
-
-
-
+// ===== Auto-slide opțional =====
+setInterval(() => goToSlide(index + 1), 9000);

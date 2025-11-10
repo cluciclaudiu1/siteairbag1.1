@@ -1,1056 +1,1359 @@
+
+/* ====== HEADER MODERN ====== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 9vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+
+.site-header.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.site-header .container {
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: clamp(18px, 1.5vw + 0.8vh, 28px);
+  letter-spacing: 0.5px;
+}
+.logo span {
+  color: #E2C044;
+}
+
+/* ===== NAVIGATION ===== */
+.nav {
+  display: flex;
+  gap: 3vw;
+}
+.nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: clamp(12px, 0.9vw + 0.4vh, 16px);
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #E2C044;
+  transition: width 0.3s ease;
+}
+.nav a:hover {
+  color: #E2C044;
+}
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* ===== CONTACT BUTTON ===== */
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  background: linear-gradient(90deg, #6F1A07, #A23B12);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7vh 1.5vw;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: clamp(12px, 0.9vw + 0.4vh, 16px);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.contact-btn:hover {
+  background: linear-gradient(90deg, #A23B12, #E2C044);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(226,192,68,0.4);
+  color:white;
+}
+.contact-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ===== BURGER MENU ===== */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1100;
+}
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 5px;
+  transition: all 0.4s ease;
+}
+
+/* ===== ANIMAȚIE “X” ===== */
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ===== MENIU MOBIL ===== */
+@media (max-width: 800px) {
+  .nav {
+    position: fixed;
+    top: 9vh;
+    right: -100%;
+    width: 70vw;
+    height: 91vh;
+    background: rgba(0, 0, 0, 0.96);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4vh;
+    transition: right 0.4s ease;
+  }
+
+  .nav.active {
+    right: 0;
+  }
+
+  .nav a {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .contact-btn {
+    display: none;
+  }
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('entry.jpg') center center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Overlay transparent pentru efect cinematic */
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
+}
+
+/* Conținutul */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  width: 90%;
+  max-width: 900px;
+  animation: fadeIn 1.5s ease forwards;
+  opacity: 0;
+}
+
+.hero-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(28px, 3vw + 2vh, 60px);
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin-bottom: 2vh;
+}
+.hero-content h1 span {
+  color: #E2C044;
+}
+
+.hero-content p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(14px, 1vw + 0.7vh, 20px);
+  line-height: 1.6;
+  margin-bottom: 4vh;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Butoane CTA */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  flex-wrap: wrap;
+}
+
+.hero-buttons a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 1.2vh 2.5vw;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #E2C044, #A23B12);
+  color: #000;
+}
+.btn-primary:hover {
+  background: linear-gradient(90deg, #A23B12, #6F1A07);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  border: 2px solid #E2C044;
+  color: #E2C044;
+  background: transparent;
+}
+.btn-secondary:hover {
+  background: #E2C044;
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* Fade-in animare */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(40px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero {
+    height: 90vh;
+  }
+  .hero-content h1 {
+    font-size: clamp(24px, 2.5vw + 1.5vh, 40px);
+  }
+  .hero-content p {
+    font-size: clamp(12px, 1vw + 0.5vh, 16px);
+  }
+  .hero-buttons {
+    gap: 3vh;
+    flex-direction: column;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
+html {
   scroll-behavior: smooth;
-  background: #a3a3a3;
-  overflow-x: hidden;
 }
 
-body.intro-active {
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #0e0e0e;       /* fundal elegant, neutru */
+  color: #fff;                     /* text alb pentru contrast */
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ===== SCROLLBAR PERSONALIZAT ===== */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6F1A07, #A23B12);
+  border-radius: 10px;
+}
+
+/* ===== CONȚINUT GENERAL ===== */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  overflow-x: hidden;
+  background: #F3FCF0; /* fundal deschis pentru secțiuni */
+}
+
+/* ===== LEGĂTURI ===== */
+a {
+  color: #E2C044;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #A23B12;
+}
+
+/* ===== TEXTURI / SELECTII ===== */
+::selection {
+  background-color: #E2C044;
+  color: #000;
+}
+
+/* ===== ANIMAȚIE LA INTRARE GENERALĂ ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVITATE ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+    background-color: #101010;  /* puțin mai deschis pe ecrane mici */
+  }
+
+  main {
+    background: #fafafa;
+  }
+}
+
+/* ===== SERVICII wide ===== */
+.services {
+  width: 100%;
+  background: #0f0f0f;
+  color: #fff;
+  padding: 12vh 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 7vh;
+  max-width: 900px;
+}
+
+.services-header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(26px, 2vw + 1vh, 42px);
+  text-transform: uppercase;
+  color: #E2C044;
+  letter-spacing: 1px;
+  position: relative;
+}
+.services-header h2::after {
+  content: "";
+  width: 90px;
+  height: 3px;
+  background: #A23B12;
+  display: block;
+  margin: 1.5vh auto 0;
+  border-radius: 2px;
+}
+.services-header p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(14px, 1vw + 0.5vh, 18px);
+  color: #ccc;
+  margin-top: 2vh;
+}
+
+/* ===== GRID dreptunghiular ===== */
+.services-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 4vh 3vw;
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* ===== CARD ===== */
+.service {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 35vh; /* mai lat decât înalt */
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  cursor: pointer;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.service:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+}
+
+/* Overlay elegant */
+.service .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 10%, rgba(0,0,0,0.2) 85%);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+.service:hover .overlay {
+  background: linear-gradient(to top, rgba(162,59,18,0.8) 10%, rgba(0,0,0,0.25) 85%);
+}
+
+/* Text poziționat jos */
+.service-content {
+  position: relative;
+  z-index: 2;
+  padding: 2vw 2vw 3vh;
+  width: 100%;
+  max-width: 800px;
+  transition: transform 0.3s ease;
+}
+.service:hover .service-content {
+  transform: translateY(-5px);
+}
+
+.service-content h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #E2C044;
+  font-size: clamp(18px, 1vw + 0.8vh, 26px);
+  margin-bottom: 0.5vh;
+}
+.service-content p {
+  font-family: 'Open Sans', sans-serif;
+  color: #f1f1f1;
+  font-size: clamp(13px, 0.9vw + 0.4vh, 17px);
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .services-showcase {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+  .service {
+    height: 32vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 8vh 4vw;
+  }
+  .services-showcase {
+    grid-template-columns: 1fr;
+  }
+  .service {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .service {
+    height: 28vh;
+  }
+}
+
+/* ===== DESPRE NOI ===== */
+.about {
+  width: 100%;
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: #fff;
+  padding: 12vh 5vw;
+  display: flex;
+  justify-content: center;
+}
+
+.about-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6vh;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* ===== TEXT PRINCIPAL ===== */
+.about-text {
+  text-align: center;
+  max-width: 900px;
+}
+
+.about-text h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(26px, 2vw + 1vh, 42px);
+  text-transform: uppercase;
+  color: #E2C044;
+  letter-spacing: 1px;
+  margin-bottom: 2vh;
+  position: relative;
+}
+.about-text h2::after {
+  content: "";
+  width: 80px;
+  height: 3px;
+  background: #A23B12;
+  display: block;
+  margin: 1vh auto 0;
+  border-radius: 2px;
+}
+.about-text p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(14px, 1vw + 0.5vh, 18px);
+  color: #ccc;
+  margin-bottom: 2vh;
+  line-height: 1.7;
+}
+
+/* ===== HIGHLIGHTS ===== */
+.about-highlights {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3vh 4vw;
+}
+.highlight {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1vw;
+  max-width: 300px;
+  transition: transform 0.4s ease, background 0.4s ease;
+  padding: 1.5vh 1.5vw;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+}
+.highlight:hover {
+  background: rgba(226,192,68,0.1);
+  transform: translateY(-5px);
+}
+.highlight svg {
+  min-width: 40px;
+  height: 40px;
+}
+.highlight h4 {
+  font-family: 'Montserrat', sans-serif;
+  color: #E2C044;
+  font-size: clamp(16px, 1vw + 0.4vh, 22px);
+  margin-bottom: 0.3vh;
+}
+.highlight p {
+  font-family: 'Open Sans', sans-serif;
+  color: #ddd;
+  font-size: clamp(13px, 0.9vw + 0.3vh, 16px);
+}
+
+/* ===== STATISTICI ===== */
+.about-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5vw;
+  margin-top: 4vh;
+}
+.stat {
+  text-align: center;
+  min-width: 150px;
+}
+.stat h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #E2C044;
+  font-size: clamp(32px, 3vw + 1vh, 60px);
+  margin-bottom: 0.5vh;
+}
+.stat p {
+  font-family: 'Open Sans', sans-serif;
+  color: #aaa;
+  font-size: clamp(14px, 1vw + 0.3vh, 18px);
+  text-transform: uppercase;
+}
+
+/* ===== ANIMAȚIE SCROLL-IN ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .about {
+    padding: 10vh 4vw;
+  }
+  .about-highlights {
+    flex-direction: column;
+    align-items: center;
+  }
+  .highlight {
+    max-width: 90%;
+  }
+  .about-stats {
+    gap: 3vh;
+  }
+}
+
+/* ===== CUM FUNCȚIONEAZĂ ===== */
+.workflow {
+  width: 100%;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+  color: #fff;
+  padding: 12vh 5vw;
+  display: flex;
+  justify-content: center;
+}
+
+.workflow-wrapper {
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6vh;
+}
+
+/* ===== HEADER ===== */
+.workflow-header {
+  text-align: center;
+  max-width: 800px;
+}
+.workflow-header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(26px, 2vw + 1vh, 42px);
+  text-transform: uppercase;
+  color: #E2C044;
+  letter-spacing: 1px;
+  margin-bottom: 2vh;
+  position: relative;
+}
+.workflow-header h2::after {
+  content: "";
+  width: 80px;
+  height: 3px;
+  background: #A23B12;
+  display: block;
+  margin: 1vh auto 0;
+  border-radius: 2px;
+}
+.workflow-header p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(14px, 1vw + 0.5vh, 18px);
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* ===== GRID ===== */
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5vh 4vw;
+  width: 100%;
+}
+
+/* ===== CARD ===== */
+.flow-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(226, 192, 68, 0.1);
+  border-radius: 16px;
+  padding: 5vh 2.5vw;
+  text-align: center;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+}
+.flow-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-6px);
+  border-color: rgba(226, 192, 68, 0.3);
+  box-shadow: 0 6px 25px rgba(226,192,68,0.15);
+}
+
+/* icon */
+.flow-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #E2C044;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.5vh;
+  background: rgba(226,192,68,0.07);
+  transition: background 0.3s ease;
+}
+.flow-card:hover .flow-icon {
+  background: rgba(226,192,68,0.2);
+}
+.flow-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* text */
+.flow-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #E2C044;
+  font-size: clamp(18px, 1vw + 0.6vh, 24px);
+  margin-bottom: 1vh;
+}
+.flow-card p {
+  font-family: 'Open Sans', sans-serif;
+  color: #ddd;
+  font-size: clamp(13px, 0.9vw + 0.4vh, 17px);
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+/* ===== ANIMAȚIE SCROLL ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .workflow-grid {
+    grid-template-columns: 1fr;
+    gap: 4vh;
+  }
+  .flow-card {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+/* ===== ANIMAȚII ===== */
+
+/* 1️⃣ Fade-slide din lateral (alternativ stânga / dreapta) */
+.flow-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.flow-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.flow-card:nth-child(odd).visible {
+  animation: slideLeft 0.8s ease forwards;
+}
+.flow-card:nth-child(even).visible {
+  animation: slideRight 0.8s ease forwards;
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* 2️⃣ Glow subtil pe iconiță la hover */
+.flow-icon {
+  box-shadow: 0 0 0 rgba(226,192,68,0);
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.flow-card:hover .flow-icon {
+  box-shadow: 0 0 20px rgba(226,192,68,0.25);
+  transform: scale(1.05);
+}
+
+/* 3️⃣ Linie de conexiune (desktop only) */
+@media (min-width: 901px) {
+  .workflow-grid {
+    position: relative;
+  }
+  .workflow-grid::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 90%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #E2C044 50%, transparent 100%);
+    opacity: 0;
+    animation: connectLine 2s ease forwards;
+    animation-delay: 0.6s;
+  }
+  @keyframes connectLine {
+    from { width: 0; opacity: 0; }
+    to { width: 90%; opacity: 1; }
+  }
+}
+
+/* 4️⃣ Mic puls la hover pe întreg cardul */
+.flow-card:hover {
+  animation: pulseCard 0.8s ease-in-out;
+}
+@keyframes pulseCard {
+  0% { transform: translateY(-6px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.015); }
+  100% { transform: translateY(-6px) scale(1); }
+}
+
+/* ===== ANIMAȚII DESPRE NOI ===== */
+
+/* Fade-in general (pentru h2 și text) */
+.about-text {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.about-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Apariție secvențială pentru fiecare highlight */
+.highlight {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.highlight.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glow fin la hover pe icon */
+.highlight svg {
+  filter: drop-shadow(0 0 0 rgba(226,192,68,0));
+  transition: filter 0.4s ease, transform 0.3s ease;
+}
+.highlight:hover svg {
+  filter: drop-shadow(0 0 10px rgba(226,192,68,0.4));
+  transform: scale(1.08);
+}
+
+/* Pulse delicat pe card */
+.highlight:hover {
+  animation: pulseHighlight 0.9s ease-in-out;
+}
+@keyframes pulseHighlight {
+  0% { transform: translateY(-2px) scale(1); }
+  50% { transform: translateY(-4px) scale(1.02); }
+  100% { transform: translateY(-2px) scale(1); }
+}
+
+/* Fade-in pentru statistici numerice */
+.stat {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.stat.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Numere care cresc (efect de "counter") */
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.stat.visible h3 {
+  animation: countUp 0.8s ease-out forwards;
+}
+
+.about-text h2::after {
+  animation: expandLine 1s ease forwards;
+}
+@keyframes expandLine {
+  from { width: 0; opacity: 0; }
+  to { width: 80px; opacity: 1; }
+}
+
+/* ===== GALERIE ===== */
+.gallery {
+  width: 100%;
+  background: #0f0f0f;
+  padding: 10vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
-body main{
-  display: flex;
-  justify-self: flex-start;
-  align-items: center;
-  flex-flow: column;
-}
-
-body::-webkit-scrollbar {
-  display: none;
-}
-
-header {
-  background-color: black;
-  height: 8.59vh;
-  width: 100vw;
-  display:flex;
-  align-items: center;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  color:white;
-  padding: 20px;
-  position: fixed;
-  z-index: 1000;
-}
-
-header h1{
-  font-size: clamp(16px, 1.5vw + 1vh, 32px);
-  flex-grow: 1;
-}
-
-header .nav{
-  height: 5.37vh;
-  width: 40.32vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap:5.65vw;
-}
-
-header a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 0.5vw;
-  font-size: clamp(8px, 0.8vw + 0.4vh, 16px);
-  text-decoration: none;
-  text-transform: uppercase;
-  cursor: pointer;
-  min-width: 7.36vw;
-  min-height: 3.36vh;  
-}
-
-header #acasa {
-  color:white;
-  transition: color 0.7s ease;
-}
-header #despre {
-  color:white;
-  transition: color 0.7s ease;
-}
-
-header #contact{
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0.32vh 0.53vw;
-gap: 1.27vw;
-color: white;
-background: #6F1A07;
-width: 8.36vw;
-height: 3.76vh;
-transition: background-color 0.7s ease;
-}
-
-header #acasa svg path {
-  fill: currentColor;
-  transition: fill 0.7s ease;
-}
-header #acasa:hover {
-  color: #2E5266;
-}
-header #despre:hover {
-  color:#E2C044;
-
-}
-
-header #contact:hover {
-  background-color: #6F1A07;
-}
-
-header #acasa:hover svg path {
-  fill: #2E5266;
-}
-
-header a svg {
-  width: clamp(0px, 2vw + 1vh, 32px);  /* lățime fluidă, între 16px și 32px */
-  height: clamp(0px, 2vw + 1vh, 32px); /* înălțime fluidă, păstrează proporția */
-}
-
-
-main{
-    background: #F3FCF0;
-    width: 100%;
-    height: auto;
-}
-
-.entry{
-  width: 100%;
-  height: 77.65vh;
-  background: 
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 71.63%, rgba(0, 0, 0, 0.08) 100%), 
-    url('entry.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
-.entry div{
-  width: 100%;
-  height: 77.65vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  color:white;
-  font-family: 'Montserrat';
-}
-
-.entry div h1{
-  font-size: clamp(0px, 2vw + 1vh, 64px);
-  text-align: center;
-  transition: opacity 3s ease;
-  justify-self: end;
-}
-
-.entry div h2
-{
-width: 923px;
-height: 77px;
-font-family: 'Open Sans';
-font-style: normal;
-text-align: center;
-
-font-size: clamp(0px, 2vw + 1vh, 64px);
-  text-align: center;
-
-flex: none;
-order: 1;
-flex-grow: 0;
-justify-self: end;
-transition: opacity 0.7s ease;
-}
-
-.entry div h1.hidden,
-.entry div h2.hidden {
-  opacity: 0;
-}
-
-.services {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* ===== SLIDER ===== */
+.slider-container {
   position: relative;
-  width: 100vw;
-  height: 80vh;
-  padding: 4vh 1vw; /* 20px → aproximativ 2vh, 10px → 1vw */
-  gap: 2vh;
-  background: #010101;
-}
-
-.services h2{
-  color:white;
-  font-family: 'Montserrat';
-  text-align: center;
-  font-style: normal;
-  text-align: center;
-  width: 100%;
-  font-size: clamp(0px, 1.5vw + 1vh, 32px);
-}
-.services-cards p{
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  font-style: normal;
-  width: 100%;
-   font-size: clamp(0px, 1vw + 0.5vh, 20px);
-  font-weight: 600; /* potrivit pentru un h4 */
-  line-height: 1.3;
-  align-items: center;
-}
-.services svg,.dif svg, .despre svg, .func svg {
-  height: 10vh;   /* înălțimea va fi 10% din viewport height */
-  width: 100%;    /* lățimea rămâne 100% din container */
-  max-width: 100%; /* pentru siguranță să nu depășească containerul */
-  opacity: 0;            /* invizibil inițial */
-  transform: translateY(20px); /* opțional: se mișcă puțin de jos în sus */
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.services svg.visible,.dif svg.visible, .despre svg.visible, .func svg.visible {
-  opacity: 1;            /* vizibil */
-  transform: translateY(0); /* revine la poziția normală */
-}
-
-.services-cards{
-   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  padding: 0;
-  gap: 2vw 7.5vh;
-  width: 98vw;
-  height: 55vh;
-  flex: none;
-  order: 2;
-  align-self: stretch;
-  flex-grow: 0;
-}
-
-.services-cards section{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  gap: 0.75vh;
-
-  width: 25.375vw;
-  height: 25.2vh;
-
-  border-bottom: 0.6vh solid #FFFFFF;
-
- 
-  transition: border-color 0.7s ease;
-  
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.services-cards section:hover{
-  border-color: #2E5266;
-}
-
-.services-cards div{
-width: 19.375vw;
-height: 17.2vh;
-background-color: #FFFFFF;
-flex: none;
-order: 0;
-flex-grow: 0;
- transition: weight 0.7s ease;
-  transition: height 0.7s ease;
-  background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
-}
-
-.services-cards section:hover div {
-  width: 21.375vw;
-  height: 19.2vh;
-}
-
-.dif,.despre{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 100vw;
-  height: 110vh;
-  padding: 4vh 1vw; /* 20px → aproximativ 2vh, 10px → 1vw */
-  gap: 2vh;
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.dif h2,.despre h2{
-  color:#2E5266;
-  font-family: 'Montserrat';
-  text-align: center;
-  font-style: normal;
-  text-align: center;
-  width: 100%;
-  font-size: clamp(0px, 1.5vw + 1vh, 32px);
-}
-.dif h3, .despre h3{
-  color:#2E5266;
-  font-family: 'Montserrat';
-  text-align: center;
-  font-style: normal;
-  text-align: center;
-  width: 100%;
-  font-size: clamp(0px, 2vw + 1vh, 28px);
-  line-height: 1.3;
-  font-weight: 700;
-}
-
-.dif-cards,.despre-cards{
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-align-items: center;
-align-content: center;
-padding: 2.1vh 2.1vw; /* padding flexibil în funcție de viewport */
-gap: 5.2vh 6.25vw;    /* gap flexibil în funcție de viewport */
-
-width: 93vw;          /* lățimea întregului viewport */
-height: 85vh;          /* înălțimea ca procent din viewport */
-
-flex: none;
-order: 2;
-flex-grow: 0;
-}
-
-.dif-cards section,.despre-cards section{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  gap: 0.75vh;
-
-  width: 40.375vw;
-  height: 25.2vh;
-
-  border-bottom: 0.6vh solid #000000;
-
- 
-  transition: border-color 0.7s ease;
-  
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.dif-cards p, .despre-cards p{
-  color: rgb(0, 0, 0);
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  font-style: normal;
-  width: 100%;
-   font-size: clamp(0px, 1vw + 0.5vh, 20px);
-  font-weight: 600; /* potrivit pentru un h4 */
-  line-height: 1.3;
-  align-items: center;
-}
-
-.func{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 100vw;
-  height: 80vh;
-  padding: 4vh 1vw; /* 20px → aproximativ 2vh, 10px → 1vw */
-  gap: 2vh;
-  background: #000000;
-}
-
-.func-cards{
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-align-items: center;
-align-content: center;
-padding: 2.1vh 2.1vw; /* padding flexibil în funcție de viewport */
-gap: 5.2vh 6.25vw;    /* gap flexibil în funcție de viewport */
-
-width: 93vw;          /* lățimea întregului viewport */
-height: 57vh;         /* înălțimea ca procent din viewport */
-
-flex: none;
-order: 2;
-flex-grow: 0;
-}
-
-.func-cards section{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  gap: 0.75vh;
-
-  width: 40.375vw;
-  height: 25.2vh;
-
-  border-bottom: 0.6vh solid #ffffff;
-
- 
-  transition: border-color 0.7s ease;
-  
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.func h2, .poze h2{
-  color:#E2C044;
-  font-family: 'Montserrat';
-  text-align: center;
-  font-style: normal;
-  text-align: center;
-  width: 100%;
-  font-size: clamp(0px, 1.5vw + 1vh, 32px);
-}
-.func h3, .poze h3{
-  color:#E2C044;
-  font-family: 'Montserrat';
-  text-align: center;
-  font-style: normal;
-  text-align: center;
-  width: 100%;
-  font-size: clamp(0px, 2vw + 1vh, 28px);
-  line-height: 1.3;
-  font-weight: 700;
-}
-
-.func-cards p{
-  color:#ffffff;
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  font-style: normal;
-  width: 100%;
-   font-size: clamp(0px, 1vw + 0.5vh, 20px);
-  font-weight: 600; /* potrivit pentru un h4 */
-  line-height: 1.3;
-  align-items: center;
-}
-.despre{
-  height: 80vh;
-}
-.despre-cards{
-  height: 60vh;
-}
-.despre h2{
-  color:#6F1A07;
-}
-
-.despre h3{
-  color:#6F1A07;
-}
-
-.poze {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5vh 1vw 1vh;
-  gap: 2.5vh;
-  background-color: #000;
-  width: 100vw;
-}
-
-.poze h2, .poze h3 {
-  color: white;
-}
-
-.slider {
-  position: relative;
-  width: 90vw;
-  max-width: 1200px;
-  height: 60vh;
-  margin: 5vh auto;
+  width: 90%;
+  max-width: 1300px;
   overflow: hidden;
 }
 
 .slider-track {
   display: flex;
   transition: transform 0.6s ease;
-  align-items: center;
 }
 
 .slide {
-  flex: 0 0 35%;  /* mai late decât înainte (era 30%) */
-  margin: 0 2%;
-  transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
-  opacity: 0.4;
-  filter: blur(2px);
-  transform: scale(0.8);
-  z-index: 1;
+  flex: 0 0 calc(100% / 3);
+  padding: 0 1vw;
 }
 
 .slide img {
   width: 100%;
-  height: 45vh;   /* mai scunde decât înainte (era 60vh) */
+  height: 50vh;
   object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  border-radius: 16px;
+  transition: transform 10s ease;
+  animation: zoomSlow 14s ease-in-out infinite alternate;
+  filter: brightness(0.95);
 }
 
-.slide.active {
-  opacity: 1;
-  filter: blur(0);
-  transform: scale(1.1);
-  z-index: 3;
+/* ===== ZOOM CINEMATIC ===== */
+@keyframes zoomSlow {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
 }
 
-.slide.prev, .slide.next {
-  opacity: 0.6;
-  filter: blur(1px);
-  transform: scale(0.9);
-  z-index: 2;
+/* ===== DOTS ===== */
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 3vh;
+  gap: 1vw;
+}
+.dots button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #555;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.dots button.active {
+  background: #E2C044;
 }
 
-.slide.hidden {
-  opacity: 0;
-  transform: scale(0.8);
-  filter: blur(2px);
-  z-index: 0;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .slide {
+    flex: 0 0 calc(100% / 2);
+  }
+  .slide img {
+    height: 45vh;
+  }
 }
 
-.slider-btn {
+@media (max-width: 768px) {
+  .slide {
+    flex: 0 0 100%;
+  }
+  .slide img {
+    height: 40vh;
+  }
+}
+
+/* ===== SAGETI MINIMALISTE ===== */
+.arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
+  width: 40px;
+  height: 40px;
   border: none;
-  color: white;
-  font-size: 3vh;
-  padding: 1vh 1vw;
+  background: none;
   cursor: pointer;
-  border-radius: 50%;
-  z-index: 5;
-}
-
-.prev-btn { left: 1vw; }
-.next-btn { right: 1vw; }
-
-/* Container general */
-.whatsapp-container {
-  position: fixed;
-  bottom: 6vh;         /* puțin mai sus de marginea de jos */
-  right: 6vw;          /* puțin mai spre centru */
+  z-index: 10;
   display: flex;
   align-items: center;
-  gap: 1.2vw;          /* spațiu între text și iconiță */
-  z-index: 1000;
-  animation: fadeIn 1s ease-in-out;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.6;
 }
 
-/* Textul din stânga */
-.whatsapp-text {
-  background-color: rgba(50, 50, 50, 0.7);
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.2vh, 1vw + 0.4vh, 2.2vh);
-  padding: 1vh 2vw;
-  border-radius: 3vh;
-  box-shadow: 0 0.5vh 1.5vh rgba(0,0,0,0.3);
-  white-space: nowrap;
-  animation: slideIn 1.2s ease-out;
+.arrow.prev { left: 1vw; }
+.arrow.next { right: 1vw; }
+
+/* Desenăm săgețile doar cu border */
+.arrow::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-top: 2px solid #E2C044;
+  border-right: 2px solid #E2C044;
+  transform: rotate(225deg);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Butonul rotund WhatsApp */
-.whatsapp-float {
-  position: relative;
-  width: 7vh;
-  height: 7vh;
-  background-color: #25d366;
-  border-radius: 50%;
+.arrow.next::before {
+  transform: rotate(45deg);
+}
+
+/* Hover subtil: se mișcă ușor și devine mai luminoasă */
+.arrow:hover {
+  opacity: 1;
+}
+.arrow.prev:hover::before {
+  transform: translateX(-2px) rotate(225deg);
+  border-color: #F2E38B;
+}
+.arrow.next:hover::before {
+  transform: translateX(2px) rotate(45deg);
+  border-color: #F2E38B;
+}
+
+/* Click feedback */
+.arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .arrow {
+    width: 32px;
+    height: 32px;
+    opacity: 0.8;
+  }
+  .arrow::before {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* ===== CONTACT ===== */
+.contact {
+  width: 100%;
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: #fff;
+  padding: 12vh 5vw;
   display: flex;
   justify-content: center;
+  text-align: center;
+}
+
+.contact-wrapper {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  box-shadow: 0 0.6vh 2vh rgba(0,0,0,0.3);
+  gap: 5vh;
+}
+
+.contact h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(26px, 2vw + 1vh, 42px);
+  color: #E2C044;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1vh;
+}
+.contact h2::after {
+  content: "";
+  width: 80px;
+  height: 3px;
+  background: #A23B12;
+  display: block;
+  margin: 1vh auto 0;
+  border-radius: 2px;
+}
+.contact p {
+  font-family: 'Open Sans', sans-serif;
+  color: #ccc;
+  font-size: clamp(14px, 1vw + 0.4vh, 18px);
+}
+
+/* ===== GRID CONTACT ===== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 4vh 4vw;
+  width: 100%;
+  justify-items: center;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5vh;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-4px);
+}
+
+.contact-item svg {
+  width: 38px;
+  height: 38px;
+  stroke: #E2C044;
+  transition: stroke 0.3s ease, transform 0.3s ease;
+}
+
+.contact-item:hover svg {
+  stroke: #F2E38B;
+  transform: scale(1.05);
+}
+
+.contact-item a,
+.contact-item span {
+  color: #fff;
   text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(14px, 1vw + 0.4vh, 18px);
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #E2C044;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .contact {
+    padding: 8vh 4vw;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3vh;
+  }
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  width: 100%;
+  background: #0b0b0b;
+  color: #ddd;
+  padding: 8vh 5vw 4vh;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid rgba(226, 192, 68, 0.3);
+}
+
+.footer-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 5vh 3vw;
+  justify-items: center;
+  margin-bottom: 4vh;
+}
+
+/* ===== Brand ===== */
+.footer-brand h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #E2C044;
+  font-size: clamp(20px, 1.5vw + 1vh, 28px);
+  margin-bottom: 1vh;
+}
+.footer-brand p {
+  font-size: clamp(13px, 0.9vw + 0.3vh, 16px);
+  color: #bbb;
+  max-width: 300px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ===== Linkuri ===== */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+}
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: clamp(14px, 1vw + 0.3vh, 17px);
+}
+.footer-links a:hover {
+  color: #E2C044;
+}
+
+/* ===== Contact Info ===== */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  color: #ccc;
+}
+.footer-contact a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: clamp(14px, 1vw + 0.3vh, 17px);
+  transition: color 0.3s ease;
+}
+.footer-contact a:hover {
+  color: #E2C044;
+}
+.footer-contact span {
+  font-size: clamp(13px, 0.9vw + 0.3vh, 16px);
+  color: #aaa;
+}
+
+/* ===== Drepturi jos ===== */
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid rgba(226, 192, 68, 0.15);
+  padding-top: 2vh;
+}
+.footer-bottom p {
+  font-size: clamp(12px, 0.8vw + 0.3vh, 15px);
+  color: #777;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .footer-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+/* ===== BUTON WHATSAPP FIX ===== */
+.whatsapp-container {
+  position: fixed;
+  bottom: 4vh;
+  right: 3vw;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  z-index: 9999;
+}
+
+/* text opțional lângă icon */
+.whatsapp-text {
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.8vh 1.2vw;
+  border-radius: 1.5vw;
+  font-size: clamp(12px, 0.9vw + 0.4vh, 16px);
+  opacity: 0.9;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* ascundem textul când ecranul e mic */
+@media (max-width: 700px) {
+  .whatsapp-text {
+    display: none;
+  }
+}
+
+/* iconul WhatsApp */
+.whatsapp-float {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   overflow: hidden;
   transition: transform 0.3s ease;
-  animation: pulse 2s infinite;
+}
+.whatsapp-float svg {
+  width: 52px;
+  height: 52px;
+  transition: transform 0.4s ease;
 }
 
-.whatsapp-float:hover {
-  transform: scale(1.1);
+/* efect subtil la hover */
+.whatsapp-float:hover svg {
+  transform: scale(1.05);
 }
 
-/* Logo WhatsApp */
-.whatsapp-icon {
-  width: 3.5vh;
-  height: 3.5vh;
-}
-
-/* Efect shine */
-.shine {
-  content: "";
+/* Efect de “shine” trecător */
+.whatsapp-float .shine {
   position: absolute;
   top: 0;
   left: -75%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.4) 50%,
-    rgba(255,255,255,0) 100%
-  );
-  animation: shine 3s infinite;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-20deg);
+  animation: shineMove 4s infinite;
 }
 
-/* Animații */
-@keyframes shine {
+@keyframes shineMove {
   0% { left: -75%; }
   50% { left: 125%; }
   100% { left: 125%; }
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
-  70% { box-shadow: 0 0 0 3vh rgba(37, 211, 102, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+/* puls subtil, doar vizual */
+.whatsapp-float::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.25);
+  animation: pulseGlow 3s infinite ease-in-out;
 }
 
-@keyframes slideIn {
-  0% { opacity: 0; transform: translateX(6vw); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-
-
-
-footer {
-  height: 30vh;
-  width: 100vw;
-  background-color: #010101;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  gap: 0vh 5vw;
-  border-top: 0.7vh solid #FFFFFF;
-}
-
-/* Contact */
-.footer-contact {
-  height: 25vh;
-  width: 30vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  gap: 2vh 5vw;
-}
-
-/* Hartă fixată corect */
-.footer-map {
-  width: 25vw;              /* nu 100vw, altfel rupe layoutul */
-  height: 20vh;             /* mai scundă, proporțională cu footerul */
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.5vw;
-  border: 0.4vh solid #fff;
-}
-
-.footer-map iframe {
-  width: 100%;
-  height: 100%;
-  filter: brightness(85%) grayscale(20%);
-  transition: 0.4s ease;
-  cursor: pointer;
-  border: none;
-}
-
-.footer-map iframe:hover {
-  filter: brightness(100%) grayscale(0%);
-  transform: scale(1.02);
-}
-
-/* Titlu Contact */
-.footer-contact h3 {
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  width: 100%;
-  font-size: clamp(0.35rem, 1.5vw + 0.5vh, 2rem); /* între 16px și 32px */
-  line-height: 1.3;
-  font-weight: 600;
-}
-
-
-/* Text Contact */
-.footer-contact p {
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  width: 100%;
-  font-size: clamp(0.5rem, 1vw + 0.3vh, 1.25rem); /* între 13px și 20px */
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.footer-contact a {
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  width: 100%;
-  font-size: clamp(0.5rem, 1vw + 0.3vh, 1.25rem); /* între 13px și 20px */
-  font-weight: 500;
-  line-height: 1.4;
-  text-decoration: none;
-}
-.subfooter {
-  width: 100vw;
-  background-color: #0a0a0a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.subfooter p {
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  opacity: 0.8;
-  margin: 0;
-  line-height: 1.4;
-  font-size: clamp(0.25rem, 0.8vw + 0.2vh, 1.1rem); /* între 12px și 18px */
-}
-
-.subfooter a {
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-  font-size: inherit; /* moștenește dimensiunea din <p> */
-}
-
-
-.subfooter a:hover {
-  opacity: 1;
-}
-
-footer svg{
-  width: 30vw;   /* lățime relativă la viewport */
-  height: 30vh;  /* înălțime relativă la viewport */
-
-}
-
-/* Responsive mobile */
-@media (max-width: 768px) {
-    .whatsapp-text {
-    font-size: clamp(0.9vh, 2vw, 1.5vh); /* text mai mic */
-    padding: 0.8vh 1.5vw;                /* padding mai mic */
-  }
-
-  .whatsapp-container {
-    bottom: 4vh;
-    right: 5vw;
-  }
-
-  header {
-    flex-direction: column;
-    height: auto; /* înălțime adaptivă */
-    gap:0.2vh;
-  }
-
-  header h1 {
-    font-size: clamp(16px, 6vw, 28px);
-    text-align: center;
-    margin-bottom: 1vh;
-  }
-
-  header .nav {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0vw;
-  }
-
-  header a {
-    min-width: 30%;
-    min-height: auto;
-    font-size: clamp(10px, 3vw, 14px);
-    padding: 1vh 1vw;
-  }
-
-  header #contact {
-    width: 40%;
-    height: auto;
-    padding: 1vh 2vw;
-    font-size: clamp(10px, 3vw, 14px);
-  }
-
-  header a svg {
-    width: clamp(16px, 6vw, 28px);
-    height: clamp(16px, 6vw, 28px);
-  }
-
-  .entry {
-        height: 60vh;
-        background-size: cover;
-        display: flex;
-        justify-content: end;
-        align-items: end;
-    }
-
-  .entry div {
-    height: auto;
-    padding: 8vh 5vw; /* mai puțin padding pe mobil */
-    justify-content: center; /* text centrat pe verticală */
-  }
-
-  .entry div h1 {
-    font-size: clamp(18px, 7vw, 36px);
-    line-height: 1.2;
-  }
-
-  .entry div h2 {
-    width: 90%; /* nu mai e fix 923px */
-    height: auto;
-    font-size: clamp(14px, 5vw, 24px);
-    line-height: 1.3;
-    margin-top: 1vh;
-  }
-
-   .services {
-    height: auto;       /* adaptiv la conținut */
-    padding: 4vh 5vw;
-  }
-
-  .services h2 {
-    font-size: clamp(18px, 6vw, 28px);
-  }
-
-  .services-cards {
-    flex-direction: column; /* stivuire pe verticală */
-    gap: 4vh;               /* mai mult spațiu între carduri */
-    width: 100%;
-    height: auto;           /* se adaptează la conținut */
-    padding: 0;
-  }
-
-  .services-cards section {
-    width: 90%;       /* lățime mai mare pe mobil */
-    height: auto;     /* înălțime adaptivă */
-    border-bottom-width: 0.4vh;
-  }
-
-  .services-cards div {
-    width: 100%;
-    height: 20vh;      /* mai mic pentru telefon */
-  }
-
-  .services-cards section:hover div {
-    width: 100%;
-    height: 22vh;      /* efect hover mai mic pe mobil */
-  }
-
-  .services-cards p {
-    font-size: clamp(12px, 4vw, 18px);
-  }
-
-  .services svg {
-    height: 8vh; /* mai mic decât pe desktop */
-  }
-
-  .dif, .despre {
-    height: auto;           /* adaptiv la conținut */
-    padding: 4vh 5vw;       /* mai mult spațiu lateral pentru mobil */
-  }
-
-  .dif h2, .despre h2 {
-    font-size: clamp(18px, 6vw, 28px);
-  }
-
-  .dif h3, .despre h3 {
-    font-size: clamp(16px, 5vw, 24px);
-    line-height: 1.3;
-  }
-
-  .dif-cards, .despre-cards {
-    flex-direction: column; /* stivuire verticală */
-    gap: 4vh;               /* mai mult spațiu între carduri */
-    width: 100%;
-    height: auto;           /* se adaptează la conținut */
-    padding: 0;
-  }
-
-  .dif-cards section, .despre-cards section {
-    width: 90%;       /* lățime mai mare pe mobil */
-    height: auto;     /* înălțime adaptivă */
-    border-bottom-width: 0.4vh;
-  }
-
-  .dif-cards p, .despre-cards p {
-    font-size: clamp(12px, 4vw, 18px);
-  }
-
-  .func {
-    height: auto;          /* adaptiv la conținut */
-    padding: 4vh 5vw;      /* mai mult spațiu lateral pe mobil */
-  }
-
-  .func h2, .poze h2 {
-    font-size: clamp(18px, 6vw, 28px);
-  }
-
-  .func h3, .poze h3 {
-    font-size: clamp(16px, 5vw, 24px);
-    line-height: 1.3;
-  }
-
-  .func-cards {
-    flex-direction: column;  /* stivuire pe verticală */
-    gap: 4vh;                /* mai mult spațiu între carduri */
-    width: 100%;
-    height: auto;            /* se adaptează la conținut */
-    padding: 0;
-  }
-
-  .func-cards section {
-    width: 90%;      /* lățime mai mare pe mobil */
-    height: auto;    /* înălțime adaptivă */
-    border-bottom-width: 0.4vh;
-  }
-
-  .func-cards p {
-    font-size: clamp(12px, 4vw, 18px);
-  }
-
-  .despre {
-    height: auto;      /* se adaptează la conținut */
-    padding: 4vh 5vw;  /* mai mult spațiu lateral pe mobil */
-  }
-
-  .despre-cards {
-    height: auto;      /* înălțime adaptivă */
-    flex-direction: column; /* stivuire verticală */
-    gap: 4vh;          /* spațiu mai mare între carduri */
-    width: 100%;
-  }
-
-  .despre h2 {
-    font-size: clamp(18px, 6vw, 28px);
-  }
-
-  .despre h3 {
-    font-size: clamp(16px, 5vw, 24px);
-    line-height: 1.3;
-  }
-
-  .poze {
-    padding: 4vh 5vw 2vh; /* mai mult spațiu lateral */
-    gap: 3vh;
-  }
-
-.poze h2 {
-  font-size: clamp(18px, 2.5vw + 0.5vh, 28px);
-}
-
-.poze h3 {
-  font-size: clamp(14px, 1.8vw + 0.3vh, 22px);
-}
-
-  .slider {
-    width: 95vw;        /* mai aproape de marginile ecranului */
-    height: 40vh;       /* înălțime redusă pentru mobil */
-    margin: 3vh auto;
-  }
-
-  .slide {
-    flex: 0 0 70%;      /* carduri mai mari pe ecran mic */
-    margin: 0 2.5%;
-    opacity: 0.5;
-    transform: scale(0.85);
-  }
-
-  .slide img {
-    height: 30vh;       /* imagine mai scurtă */
-  }
-
-  .slide.active {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  .slide.prev, .slide.next {
-    transform: scale(0.9);
-    opacity: 0.6;
-  }
-
-  .slider-btn {
-    font-size: 4vw;     /* butoane mai mici, proporțional cu ecranul */
-    padding: 1.5vw 2vw;
-  }
-footer {
-    flex-direction: column;
-    height: auto;
-    padding: 3vh 5vw;
-    gap: 3vh;
-    border-top: 0.5vh solid #FFFFFF;
-  }
-
-  .footer-contact {
-    width: 90%;
-    height: auto;
-    align-items: center;
-    text-align: center;
-    gap: 2vh;
-  }
-
-  .footer-map {
-    width: 90%;
-    height: 30vh;
-    margin-top: 2vh;
-    border-radius: 1vw;
-  }
-
-  .footer-map iframe {
-    height: 100%;
-  }
-
-  .footer-contact h3 {
-    font-size: clamp(16px, 5vw, 22px);
-  }
-
-  .footer-contact p {
-    font-size: clamp(14px, 4vw, 18px);
-  }
-
-    .footer-contact a {
-    font-size: clamp(14px, 4vw, 18px);
-  }
-
-  .subfooter {
-    padding: 2vh 5vw;
-  }
-
-  footer svg {
-    width: 40vw;
-    height: auto;
-  }
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0; }
 }
